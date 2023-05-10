@@ -26,7 +26,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('add');
     }
 
     /**
@@ -37,7 +37,19 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=$request->all();
+
+        $tmp=new Comic();
+        $tmp->title=$data['title'];
+        $tmp->description=$data['description'];
+        $tmp->thumb=$data['thumb'];
+        $tmp->price=$data['price'];
+        $tmp->series=$data['series'];
+        $tmp->sale_date=$data['sale_date'];
+        $tmp->type=$data['type'];
+        $tmp->save();
+
+        return redirect()->route('comics.show',$tmp->id);
     }
 
     /**

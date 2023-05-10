@@ -6,6 +6,9 @@
 
 @section('main')
     <div class="container">
+        <div class="py-5">
+            <a href="{{ route('comics.create') }}" class="btn btn-primary">Aggiungi comic</a>
+        </div>
         <div class="row gy-3">
             @foreach ($data as $item)
                 <div class="col-12 col-md-4 col-lg-3">
