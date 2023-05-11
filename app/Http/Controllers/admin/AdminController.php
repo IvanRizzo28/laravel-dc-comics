@@ -72,7 +72,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item=Comic::findOrFail($id);
+        return view('edit',compact('item'));
     }
 
     /**
@@ -84,7 +85,10 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=$request->all();
+        $item=Comic::find($id);
+        $item->update($data);
+        return to_route('comics.index');
     }
 
     /**
@@ -95,6 +99,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item=Comic::find($id);
+        $item->delete();
+        return to_route('comics.index');
     }
 }

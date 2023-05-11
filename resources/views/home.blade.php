@@ -17,7 +17,15 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->title }} - ${{ $item->price }}</h5>
                             <p class="card-text">{{ $item->description }}</p>
-                            <a href="{{ route('comics.show',$item->id) }}" class="btn btn-primary">Dettagli</a>
+                            <div class="d-flex">
+                                <a href="{{ route('comics.show',$item->id) }}" class="btn btn-primary me-1">Dettagli</a>
+                                <a href="{{ route('comics.edit',$item->id) }}" class="btn btn-primary me-1">Modifica</a>
+                                <form action="{{ route('comics.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" class="btn btn-danger" value="Elimina"></a>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
