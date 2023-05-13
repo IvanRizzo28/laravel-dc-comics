@@ -1,15 +1,32 @@
-const elimina=document.querySelectorAll(".bottone-elimina");
-const popup=document.getElementById('popup');
-const chiudi=document.getElementById('chiudi');
+const elimina = document.querySelectorAll(".bottone-elimina");
+const popup = document.querySelectorAll('.popup');
+const chiudi = document.querySelectorAll('.chiudi');
+const form = document.getElementById("form");
+let tmp;
 
 elimina.forEach(element => {
-    element.addEventListener("click", function(){
-        popup.classList.remove('d-none');
-        popup.classList.add('d-flex');
+    element.addEventListener("click", function () {
+        popup.forEach(popupElement => {
+            if (popupElement.id === "popup" + element.id) {
+                popupElement.classList.remove("d-none");
+                popupElement.classList.add("d-flex");
+                tmp = popupElement.id;
+                console.log(popupElement);
+            }
+        });
     });
 });
 
-chiudi.addEventListener('click', function(){
-    popup.classList.remove('d-flex');
-    popup.classList.add('d-none');
+chiudi.forEach(element => {
+    element.addEventListener('click', function () {
+        popup.forEach(popupElement => {
+            if (popupElement.id === tmp) {
+                popupElement.classList.remove("d-flex");
+                popupElement.classList.add("d-none");
+                tmp = "";
+                console.log(popupElement);
+            }
+        });
+    });
 });
+
