@@ -11,7 +11,6 @@ elimina.forEach(element => {
                 popupElement.classList.remove("d-none");
                 popupElement.classList.add("d-flex");
                 tmp = popupElement.id;
-                console.log(popupElement);
             }
         });
     });
@@ -24,7 +23,6 @@ chiudi.forEach(element => {
                 popupElement.classList.remove("d-flex");
                 popupElement.classList.add("d-none");
                 tmp = "";
-                console.log(popupElement);
             }
         });
     });

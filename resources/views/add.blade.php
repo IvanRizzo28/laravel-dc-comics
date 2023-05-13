@@ -6,7 +6,16 @@
 
 @section('main')
     <div class="container">
-        <form action="{{ route("comics.store") }}" method="POST">
+        @if ($errors->any())
+            <div class="alert alert-danger mb-3 mt-3">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('comics.store') }}" method="POST">
             @csrf
             <input type="hidden" name="thumb" value="https://placehold.co/600x400">
             <div class="mb-3">
@@ -19,7 +28,8 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control" id="price" name="price" step="0.01" min="0.01" max="10000.00">
+                <input type="number" class="form-control" id="price" name="price" step="0.01" min="0.01"
+                    max="10000.00">
             </div>
             <div class="mb-3">
                 <label for="series" class="form-label">Series</label>

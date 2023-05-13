@@ -37,6 +37,16 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|max:100',
+            'description'=> 'max:300',
+            'thumb'=>'required|url',
+            'price'=>'required|numeric',
+            'series'=>'required|max:50',
+            'sale_date'=>'required|date',
+            'type'=>'required|max:25'
+        ]);
+
         $data=$request->all();
 
         $tmp=new Comic();
