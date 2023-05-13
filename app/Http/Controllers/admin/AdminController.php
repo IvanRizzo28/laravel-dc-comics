@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use App\Http\Requests\ComicRequest;
 use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
@@ -35,17 +36,9 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        $request->validate([
-            'title' => 'required|max:100',
-            'description'=> 'max:300',
-            'thumb'=>'required|url',
-            'price'=>'required|numeric',
-            'series'=>'required|max:50',
-            'sale_date'=>'required|date',
-            'type'=>'required|max:25'
-        ]);
+        $request->validated();
 
         $data=$request->all();
 
@@ -93,10 +86,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ComicRequest $request, $id)
     {
+        $request->validated();
         $data=$request->all();
-        $item=Comic::find($id);
+        $item=Comic::findOrFail($id);
         $item->update($data);
         return to_route('comics.index');
     }
